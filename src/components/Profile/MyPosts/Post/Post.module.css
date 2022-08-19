@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+.item {
+    font-size: 18px;
+    display: flex;
+    border: 1px solid #E0DFDC;
+    border-radius: 5px;
+    justify-content: space-between;
+    margin: .3em 0;
+    height: 160px;
+    background-color: white;
+}
+.item div, .twoCol div {
+    background-color: white;
+}
+.twoCol {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: .5em;
+    width: 25em;
+    background-color: white;
+}
+.postAvaImg {
+    border-radius: 50%;
+}
+
+.item p, .twoCol p {
+    text-align: left;
+    padding: 1em;
+    font-size: 18px;
+    background-color: white;
+}
+.postText {
+    width: 20em;
+    margin-left: 1em;    
+}
+.date {
+    width: 6em;
+    font-size: 8px;
+    text-align: right;
+    padding: 0;
+}
+.like {
+    font-size: 16px;
+    width: 6em;
+    padding: 1em;
+}
+
+

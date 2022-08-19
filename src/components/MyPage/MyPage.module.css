@@ -1,0 +1,115 @@
+.main {
+    margin-left: 1em;
+    z-index: 0;
+}
+/*.filter:not(.editBlock) {
+    filter: opacity(30%);
+    filter: blur(1px);      
+}*/
+.headFlexWrapper {
+    display: flex;
+    margin-top: 1em;
+}
+
+h2 {
+    font-size: 26px;
+}
+.avaWrapper {
+    margin-right: 2em;
+    /* height: 100px; */
+}
+.userAva {
+    /* width: 100%; */
+    border-radius: 30%;
+    height: 150px;
+    
+}
+
+
+.editBlock {
+    position: relative;
+    display: block;
+    
+}
+.editBlock button {
+    display: inline-flex;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #DBE2E6;
+    height: 42px;
+    width: 42px;
+    border: none;
+    font-weight: 800;
+}
+.editBlock button img {
+    display: block;
+    margin: 9px auto 0 auto;
+}
+.hiddenModal {
+    z-index: -1;
+    display: none;
+    /* pointer-events: none; */
+}
+.openModal {
+    height: 10em;
+    width: 10em;
+    background: white;
+    position: absolute;
+    z-index: 1;
+    border-radius: 4px;
+    padding: 1em;
+    box-shadow: rgb(33 42 54 / 13%) 0px 4px 16px 3px;
+    
+}
+.modalLink {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    padding: .8em;
+}
+.modalLink:hover {
+    color: inherit;
+    cursor: pointer;
+}
+.description {
+    display: block;
+}
+.skillsWrapper {
+    margin-top: 5em;
+}
+.selectedSkill, .freeSkill {
+    display: inline-block;
+    background: #DBE2E6;
+    color: #5E737D;
+    margin: 0 .3em;
+    padding: .5em;
+    font-size: 16px;
+    border-radius: 5px;
+}
+.freeSkill {
+    cursor: pointer;
+    color: #1D2124; 
+}
+.skillKit, .skillPanel {
+    height: fit-content;
+    padding: 1em;
+    display: block;
+}
+.skillPanel {
+    background: #F4F4F5; 
+}
+
+.form {
+    display: block;
+    width: 400px;
+}
+.lookingForAJob {
+    display: flex;
+    justify-content: flex-start;
+}
+.checkbox {
+    display: inline-block;
+    border: 2px solid #5E737D;
+}
+
+    

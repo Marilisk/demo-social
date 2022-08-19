@@ -1,0 +1,44 @@
+.dialogs {
+    background: white;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    
+}
+.dialog:active {
+    font-weight: 700;
+    padding-left: .5em;
+}
+.dialogsItems {
+    padding: .2em;
+    background: white;
+    font-size: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    color: linear-gradient(#ffffff, #100000);
+}
+.dialogsItems input, .dialogsItems button {
+    width: 50%;
+    padding: .6em;
+}
+.dialogsItems img{
+    height: 25px;
+}
+
+.dialog {
+    background: #ffffff;
+    padding: .2em;
+}
+.messages {
+    background: #ffffff;
+    color: #645d57;
+    padding: .2em;
+}
+a {
+    color: black;
+    background: inherit;
+}
+
+
+
+
