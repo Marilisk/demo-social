@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+}
+.list {
+    background: white;
+    width: 660px;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 30px;
+}
+.avaWrapper {
+    width: 90px;
+    border-radius: 20px;
+}
+.userAva {
+    width: 70px;
+    display: block;
+    margin: 0 auto;
+    margin-top: .35em;
+}
+.usersList {
+    display: flex;
+    justify-content: space-between;  
+    margin: .6em;
+    border-radius: 20px;
+    padding-left: 14px;
+}
+.usersList:hover, .avaWrapper:hover {
+    background: #F4F4F5;
+}
+
+.usersList div {
+    padding: .2em;   
+}
+.userInfo {
+    width: 380px;
+}
+.name {
+    font-size: 22px;
+    font-weight: 500;
+}
+.status {
+    font-size: 14px;
+    color: #626570;
+}
+.geo {
+    font-size: 12px;
+    color: #8F9199;
+    margin-top: .6em;
+}
+.followButton {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    width: 115px;
+    height: 34px;
+    background: #EFF0F1;
+    border: none;
+    border-radius: 20px 20px 20px 20px;
+    margin-top: 1.8em;
+    margin-right: 1em;
+}
+.followButton:hover {
+    background: white;
+    color: #0072E1;
+    transition: 200ms;
+}
+.followText {
+    display: inline-block;
+    text-align: center;
+    font-size: 16px;
+    margin: .2em auto;
+}
+.pageNumbers {
+    display: flex;
+    justify-content: space-evenly;
+    cursor: pointer;
+    padding: .4em;
+    text-align: center;
+}
+.selestedPage {
+    font-weight: 600;
+    width: 2em;
+    background: #E9EEF0;
+    padding: .3em .2em .2em .2em;
+    text-align: center;
+    border-radius: 20px;
+}
+.buttons {
+    color: #1D2124;
+    cursor: pointer;
+    width: 5em;
+    padding: .3em .5em .5em .5em;
+    font-size: 16px;
+    font-weight: 600;
+    border: 2px solid #1D2124;
+    border-radius: 20px;
+    background: white;
+}
+.buttons:hover{
+    background: #E9EEF0;
+}
+
+

@@ -1,0 +1,23 @@
+.content {
+    grid-area: c;
+}
+.content div {
+    background: white;
+}
+.content img {
+    width: 100%; 
+    height: 18vh;
+}
+.post {
+    font-size: 18px;
+}
+.selectProf, .selectProf option {
+    font-size: 14px;
+    margin: auto 0 auto auto;
+    height: 2em;
+    width: 20%;
+}
+.twoColWrapper {
+    display: flex;
+    background: red;
+}

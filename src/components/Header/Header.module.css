@@ -1,0 +1,69 @@
+.header {
+  display: flex;
+  width: 1180px;
+  height: 75px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.appLogo {
+  height: 50px;
+  margin-top: 15px;
+}
+.header img { 
+  cursor: pointer;
+}
+.loginnedName {
+  font-weight: 600;
+  padding: 0 0 1em 0;
+  margin: 0 auto;
+  color: white;
+}
+.loginnedName:hover {
+  color: #0072E1;
+}
+.searchBar {
+  margin: 19px auto;
+  height: fit-content;
+}
+.loginBlockNotAuth {
+  background: #0072E1;
+  height: 2.2em;
+  width: fit-content;
+  padding: .2em 1.1em .7em 1.1em; 
+  margin: 15px 50px auto 0; 
+  cursor: pointer;
+  border-radius: 38px;
+}
+
+.loginBlockNotAuth:hover a {
+  color: #0072E1;
+  cursor: pointer;
+}
+.loginBlockNotAuth:hover {
+  background: white;
+  border: 1px solid #0072E1;
+  box-sizing: border-box;
+  color: #0072E1;
+  cursor: pointer;
+}
+.loginLink {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+.loginLink:hover {
+  color: #0072E1;
+  cursor: pointer;
+}
+.logoutArrowWrapper {
+  margin: 0 100px 0 0
+}
+.logoutArrow {
+  padding-top: 25px;
+}
+.logoutArrow:hover {
+  opacity: 0.6;
+}
+
+
+
