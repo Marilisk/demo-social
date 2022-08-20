@@ -4,27 +4,24 @@
     border-right: 2px solid #DBE2E6;
     font-size: 14px;
     line-height: 20px;
-    background: white;
     height: 95vh;
     margin-top: 0;
     padding-top: 2px;
-    /* border: 1px solid red; */
 }
 .item, .active {
     cursor: pointer;
     color: #1D2124;
     display: flex;
     justify-content: flex-start;
-    padding-top: .28em;
-    padding-left: .3em;
+    padding: .3em;
     border-radius: 25px;
     margin-right: 1em;
-        
 }
 .item p {
     display: inline-block;
     font-size: 16px;
     margin-top: 1px;
+    
 }
 .item:hover {
     background: #F4F4F5;

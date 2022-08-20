@@ -3,12 +3,10 @@ import './App.css';
 import HeaderContainer from './components/Header/Header-container.jsx';
 import Navbar from './components/Navbar/Navbar';
 import NewsContainer from './components/News/NewsContainer.jsx';
-import DatePick from './components/Settings/DatePick.jsx';
 import {Routes, Route } from 'react-router-dom';
 
 import UsersContainer from './components/Users/UsersContainer.js';
 import ProfileContainer from './components/Profile/ProfileContainer.jsx';
-import AuthForm from './components/Authentifications/AuthForm.jsx';
 import MyPageContainer from './components/MyPage/MyPageContainer.jsx';
 import FormikForm from './components/Authentifications/FormikForm.jsx';
 import { connect } from 'react-redux/es/exports.js';
@@ -16,7 +14,8 @@ import {initialiseAppThunkCreator} from './components/redux/app-reducer.js';
 import Preloader from './components/common/preloader/preloader.js';
 import { withRouter } from './components/Profile/ProfileContainer.jsx'; 
 import { compose } from 'redux';
-import EditProfileContainer from './components/MyPage/EditProfileFormContainer.jsx';
+import EditProfileContainer from './components/MyPage/EditProfile/EditProfileFormContainer.jsx';
+import NotFound from './components/common/preloader/NotFound';
 
 const DialogsContainer = React.lazy( () => import ('./components/Dialogs/DialogsContainer')) ;
 
@@ -43,14 +42,11 @@ function App(props) {
           <Route path='/login' element={<FormikForm />} />
 
           <Route path='/dialogs' element={<Suspense fallback={<div>Загрузка...</div>} ><DialogsContainer /></Suspense>} />
-
-
           <Route path='/news' element={<NewsContainer />} />
-          <Route path='/settings' element={<DatePick /> } /> 
-          <Route path='/authForm' element={<AuthForm />} />
           <Route path='/formikForm' element={<FormikForm />} />
           <Route path='/mypage' element={<MyPageContainer />} />
-        
+
+          <Route path='*' element={<NotFound />} />
         </Routes> 
       </div>
     </div>

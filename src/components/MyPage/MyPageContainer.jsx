@@ -3,8 +3,6 @@ import MyPage from "./MyPage";
 import { connect } from "react-redux";
 import { setLoginThunkCreator } from '../redux/auth-reducer.js';
 import { addSkillToKitAC, getUserProfileThunkCreator } from '../redux/profile-reducer.js';
-import {withAuthRedirect} from './../../HOC/withAuthRedirect.js';
-import { compose } from "redux";
 import { switchShowAppModeAC } from '../redux/app-reducer.js';
 
 const MyPageContainer = (props) =>  {

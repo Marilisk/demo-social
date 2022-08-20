@@ -51,7 +51,7 @@ const FormikForm = (props) => {
                 <img className={classes.lockIcon} src={lock} />
             </div>
 
-            <h2>Добро пожаловать!</h2>  
+            <h2>Пожалуйста, авторизуйтесь:</h2>  
 
             <form onSubmit={formik.handleSubmit} >
                     

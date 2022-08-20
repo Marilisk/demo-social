@@ -47,7 +47,7 @@ const profileReducer = (state = initialState, action) => {
             };
         };
             case DELETE_POST: {
-                return {...state, posts: state.posts.filter( p => p.id != action.id )};
+                return {...state, posts: state.posts.filter( p => p.id !== action.id )};
             }
         case SET_USER_PROFILE:
             return {...state, profile: action.profile, userId: action.profile.userId };

@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import classes from './MyPage.module.css';
 import defaultAvatar from './../../images/default_Avatar.jpg';
 import dots from './../../images/myPage/menu-dots.svg';
-import EditProfileForm from './EditProfileFormContainer.jsx';
+// import EditProfileFormContainer from './EditProfile/EditProfileFormContainer.jsx';
 import { NavLink } from "react-router-dom";
-import MainWrapper from "../../MainWrapper";
-import TestForm from "./EditProfileForm";
 
 const MyPage = (props) => {
     
@@ -45,7 +43,7 @@ const MyPage = (props) => {
 
 
             <div className={classes.editBlock}>
-                <button  type='button' onClick={expandModal}><img src={dots} /></button>
+                <button  type='button' onClick={expandModal}><img src={dots} alt=''/></button>
                 <div className={ hiddenMode ? classes.openModal : classes.hiddenModal } onBlur={expandModal}>
                     <span className={classes.modalLink}>
                         Настройки

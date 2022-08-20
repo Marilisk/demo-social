@@ -3,7 +3,7 @@ import { connect } from 'react-redux/es/exports.js';
 import Profile from "./Profile";
 import { setUserProfileActionCreator, getUserProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator } from "../redux/profile-reducer.js";
 import { setLoginThunkCreator } from "../redux/auth-reducer.js";
-import {useLocation, useNavigate, useParams, Navigate} from "react-router-dom";
+import {useLocation, useNavigate, useParams } from "react-router-dom";
 import {withAuthRedirect} from './../../HOC/withAuthRedirect.js';
 
 class ProfileContainer extends React.Component {

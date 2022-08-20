@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import c from './EditForm.module.css';
-import { Navigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const EditProfileForm  = (props) => {
     let json;
