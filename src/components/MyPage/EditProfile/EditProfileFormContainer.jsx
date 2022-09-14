@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { useCallback } from "react";
-import { switchShowAppModeAC } from '../../redux/app-reducer.js';
+//import { switchShowAppModeAC } from '../../redux/app-reducer.js';
 import { useSelector } from "react-redux";
 import { updateProfileThunkCreator } from '../../redux/profile-reducer.js';
 import EditProfileForm from "./EditProfileForm.jsx";
@@ -9,9 +9,9 @@ import EditProfileForm from "./EditProfileForm.jsx";
 const EditProfileContainer = (props) => {
 
     const dispatch = useDispatch();
-    const switchShowAppMode = useCallback( () => {
+    /* const switchShowAppMode = useCallback( () => {
         dispatch(switchShowAppModeAC());
-    })
+    }) */
     const updateProfile = useCallback( (data) => {
         dispatch(updateProfileThunkCreator(data));
     })
@@ -20,8 +20,10 @@ const EditProfileContainer = (props) => {
 
     return <div>
 
-        <EditProfileForm updateProfile={updateProfile}
-                  city={city} />
+        <EditProfileForm 
+            updateProfile={updateProfile}
+            city={city} 
+        />
     </div>
 }
 

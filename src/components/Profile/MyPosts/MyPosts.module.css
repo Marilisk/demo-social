@@ -1,10 +1,27 @@
 * {
     box-sizing: border-box;
 }
-.content {
-    grid-area: c;
+
+.postFormWrapper {
+    width: 100%;
+    border: 2px solid #DBE2E6;
+    border-radius: 5px;
+    margin: 0 15px;
+    padding: 30px;
+    
+}
+.postForm {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
+}
+.postForm span {
+    display: block;
+}
+
+.content {
+    /* grid-area: c;
+    display: flex;
+    justify-content: flex-start; */
     margin: .6em 0;
 }
 .postsList {
@@ -30,34 +47,47 @@
     font-size: 18px;
     padding: .3em;
     font-weight: 600;
-    opacity: 0.7;
-    margin-left: 1em;
+    width: 360px;
+    border: none;
+    cursor: pointer;
+    height: 5em;
+    
+}
+.content textarea:focus {
+    border: 2px solid #DBE2E6;
+    outline: none;
 }
 
 .content input:hover, .content button:hover {
     opacity: 1;
+    cursor: pointer;
 }
 .content button {
     cursor: pointer;
-    opacity: 0.7;
-    margin-left: 1.4em;
+    color: white;
     display: flex;
     justify-content: space-between;
-    font-size: 13px;
-    width: 100px;
-    height: 30px;  
-    background: white;  
-    border: 1px solid #0072E1;;
-    border-radius: 3px;
-    margin-top: 1.5em;
-    color: #0072E1;
-    padding-top: .3em;
+    font-size: 16px;
+    width: 138px;
+    height: 36px;  
+    background: #0072E1;  
+    border: none;
+    border-radius: 20px;
+    
+    font-weight: 600;
+    padding: .55em;
 }
 .content button:hover {
     background: #0072E1;
     color: white;
+    opacity: 1;
 }
 .content button:disabled {
+    /* color: #DBE2E6;
+    border: 1px solid #DBE2E6; */
+    opacity: .7;
+}
+.warning {
+    font-size: 12px;
     color: #DBE2E6;
-    border: 1px solid #DBE2E6;
 }

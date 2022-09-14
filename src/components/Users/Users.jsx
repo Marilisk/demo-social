@@ -21,7 +21,7 @@ let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portion
     const showPrevPage = () => {
         setPortionNumber(portionNumber - 1);
     }
-    console.log(portionNumber);
+    
     return <div className={styles.pageNumbers} >
 
         <div>

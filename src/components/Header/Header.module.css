@@ -6,8 +6,9 @@
   justify-content: space-between;
 }
 .appLogo {
-  height: 50px;
-  margin-top: 15px;
+  height: 57px;
+  margin-top: 8px;
+  
 }
 .header img { 
   cursor: pointer;
@@ -23,8 +24,33 @@
 }
 .searchBar {
   margin: 19px auto;
-  height: fit-content;
+  width: 400px;
+  position: relative;
+
+  
 }
+.searchInput {
+  background: #F4F4F5;
+  border: none;
+  border-radius: 20px;
+  width: 98%;
+  padding: .2em 2em;
+  font-size: 24px;
+  font-weight: 800;
+  
+
+}
+.searchInput:focus {
+  outline: none;
+}
+.loupe {
+  width: 24px;
+  position: absolute;
+  left: 12px;
+  top: 9px;
+}
+
+
 .loginBlockNotAuth {
   background: #0072E1;
   height: 2.2em;

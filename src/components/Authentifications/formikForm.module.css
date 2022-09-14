@@ -83,7 +83,7 @@ h2 {
 }
 .checkBoxLabel {
     display: inline-block;
-    
+    color: #757575;
 }
 .checkBoxLabel p {
     height: 2em; 
@@ -172,5 +172,14 @@ h2 {
 }
 .submitButton:hover {
     background: #0C5ABB;
+}
+
+.commonText {
+    display: block;
+    font-size: 14px;
+    color: #757575;
+    margin: 1em auto;
+    background: pink;
+    cursor: pointer;
 }
 

@@ -46,17 +46,22 @@ const AddPostForm = (props) => {
         } 
     });
 
-    return <form onSubmit={formik.handleSubmit}>
-        <textarea name={'newPostText'}  
-                  id={'newPostText'}
-                  placeholder={'Напишите что-нибудь'}
-                  value={formik.values.newPostText}
-                  validate={[required, maxLength10]} 
-                  onChange={formik.handleChange}
-        /> 
-        <button type={'submit'} disabled={formik.errors.newPostText}>Опубликовать</button> 
-        {formik.errors.newPostText ? <span>{formik.errors.newPostText}</span> : null}
-    </form>
+    return <div className={classes.postFormWrapper} >
+        <form onSubmit={formik.handleSubmit} className={classes.postForm}>
+            <div>
+                <textarea name={'newPostText'}  
+                    id={'newPostText'}
+                    placeholder={'Что у Вас нового?'}
+                    value={formik.values.newPostText}
+                    validate={[required, maxLength10]} 
+                    onChange={formik.handleChange}
+                />
+                {formik.errors.newPostText ? <span className={classes.warning}>{formik.errors.newPostText}</span> : null} 
+            </div>
+            <button type={'submit'} disabled={formik.errors.newPostText}>Опубликовать</button> 
+            
+        </form>
+    </div>
 }
 
 export default MyPosts;

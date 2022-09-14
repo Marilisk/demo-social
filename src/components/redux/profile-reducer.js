@@ -5,6 +5,7 @@ const SET_STATUS = 'SET-STATUS';
 const ADD_SKILL = 'ADD_SKILL';
 const UPDATE_PROFILE = 'UPDATE_PROFILE';
 const DELETE_POST = 'DELETE_POST';
+const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
 
 let initialState = {
     posts: [
@@ -46,9 +47,9 @@ const profileReducer = (state = initialState, action) => {
                 newPostText: '',
             };
         };
-            case DELETE_POST: {
-                return {...state, posts: state.posts.filter( p => p.id !== action.id )};
-            }
+        case DELETE_POST: {
+            return {...state, posts: state.posts.filter( p => p.id !== action.id )};
+        };
         case SET_USER_PROFILE:
             return {...state, profile: action.profile, userId: action.profile.userId };
         case SET_STATUS:
@@ -70,6 +71,9 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.data,
             }
         }
+        case SAVE_PHOTO_SUCCESS: {
+            return {...state, profile: {...state.profile, photos: action.photos}};
+        }
         default: 
             return state;
     } 
@@ -81,6 +85,7 @@ export const setStatusActionCreator = status => ( {type: SET_STATUS, status} );
 export const addSkillToKitAC = id => ( {type: ADD_SKILL, id: id} );
 const updateProfileAC = data => ({type: UPDATE_PROFILE, data});
 export const deletePostAC = (id) => ({type: DELETE_POST, id: id});
+export const savePhotoSuccessAC = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos });
 
 export const getUserProfileThunkCreator = (userId) => {
     return function ProfileThunk(dispatch) {
@@ -95,7 +100,7 @@ export const getStatusThunkCreator = (userId) => {
     return function getStatusThunk(dispatch) {
         profileAPI.getStatus(userId)
             .then(response => {
-                dispatch(setStatusActionCreator(response.data));
+                dispatch(setStatusActionCreator(response.data.photos));
             });
     }       
 }
@@ -124,6 +129,19 @@ export const updateProfileThunkCreator = (data) => {
                 }
             } )
     }
+}
+
+
+export const savePhotoThunkCreator = (file) => {
+    return async function savePhotoThunk(dispatch) {
+        let response = await profileAPI.savePhoto(file);   
+        if (response.data.resultCode === 0) {
+            dispatch(savePhotoSuccessAC(response.data.data.photos));
+        } else {
+            console.log('response.data.resultCode' + response.data.resultCode);
+            console.log(response.data);
+        }           
+    };
 }
 
 export default profileReducer;

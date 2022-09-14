@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './Header.module.css';
 import logoutArrow from './../../images/logoutArrow.svg';
-import logo from './../../images/logo-junior-net.png';
+import logo from './../../images/logo-start-net.png';
+import loupe from './../../images/header/loupe.png';
 
 const Header = function(props) {
   let auInfo = {
@@ -15,7 +16,8 @@ const Header = function(props) {
     <img className ={classes.appLogo} href='' alt='' src={logo} />
 
     <div className={classes.searchBar}>
-      <input type={'text'} />
+      <input type={'text'} className={classes.searchInput} />
+      <img className ={classes.loupe} href='' alt='' src={loupe} />
     </div>
 
     <div className={classes.loginBlockNotAuth}>

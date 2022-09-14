@@ -1,4 +1,6 @@
-
+.preloaderWrapper {
+    position: relative;
+}
 .preloader {
     display: inline-block;
     height: 100%;

@@ -1,5 +1,8 @@
 import React, {useState} from "react";
-import { BrowserRouter as Router, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, NavLink, useLocation, useParams, useNavigate } from "react-router-dom";
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
 import { useFormik } from 'formik';
 import { connect } from "react-redux";
 import classes from './formikForm.module.css';
@@ -24,6 +27,12 @@ const FormikForm = (props) => {
         showPasswordVisibility(value);
     }
     const [showPassword, showPasswordVisibility] = useState(false);
+
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/mypage";
+    console.log('from ' + from);
+    let navigate = useNavigate();   
+
     const formik = useFormik({
         initialValues: {
             email: props.email,
@@ -38,13 +47,14 @@ const FormikForm = (props) => {
                 password: '',
                 rememberMe: null,                                    
             });
+            navigate(from, {replace: true});
         }
     });
 
-    if (props.isAuth) {
+    /* if (props.isAuth) {
         return <Navigate to={'/profile'} replace={true}/>
-    };
-
+    }; */ 
+    
     return <section className={classes.main}>
         <div className={classes.modal}>
             <div className={classes.iconWrapper}>
@@ -53,12 +63,8 @@ const FormikForm = (props) => {
 
             <h2>Пожалуйста, авторизуйтесь:</h2>  
 
-            <form onSubmit={formik.handleSubmit} >
-                    
+            <form onSubmit={formik.handleSubmit} >                   
                 <div className={classes.fiedsWrapper}>
-                    <div>
-                         
-                    </div>
                     <div className={classes.inputWrapper}>
                         <input id={'email'}
                             name={'email'}
@@ -103,7 +109,10 @@ const FormikForm = (props) => {
                         Войти
                     </button>
 
-                    
+                    <NavLink to={from}>
+                        продолжить без авторизации
+                    </NavLink>
+
                 </div>
             </form>
         </div>
