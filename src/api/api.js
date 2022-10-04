@@ -5,6 +5,7 @@ const instance = axios.create({
     withCredentials: true, // спец параметр передающий авторизованность, логин пароль, чтобы ушел авторизованный пароль на сервер 
     headers: {
         'API-KEY': 'e88ac80f-779f-463f-a50b-aa1281567171',
+        'Content-Type': 'application/json'
     },
 });
 
@@ -13,7 +14,16 @@ export const usersAPI = {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
                 return response.data;
-            });
+            }); 
+    },
+    getFollowedUsers(currentPage, pageSize, friend) {
+        return instance.get(`users?page=${currentPage}&count=${pageSize}&friend=${friend}`)
+            .then(response => {
+                return response.data;
+            }); 
+    },
+    getAllUsers(page, amount) {
+        return instance.get(`users?page=${page}&count=${amount}`);
     },
     unFollowApiFunc(id) {
         return instance.delete(`follow/${id}`);
@@ -21,7 +31,14 @@ export const usersAPI = {
     followApiFunc(id) {
         return instance.post(`follow/${id}`);
     },
+    findUsers(currentPage, pageSize, term) {
+        return instance.get(`users?page=${currentPage}&count=${pageSize}&term=${term}`)
+            .then(response => {
+                return response.data;
+            }); 
+    },        
 }
+
 
 export const profileAPI = {
     getProfile(userId) {
@@ -58,7 +75,36 @@ export const authAPI = {
     }
 }
 
-export const loginFormAPI = {
-    
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get(`security/get-captcha-url`);
+    },
+}
+
+export const dialogsAPI = {
+    startDialog(userId) {
+        return instance.put(`dialogs/${userId}`);
+    },
+    getDialogs() {
+        return instance.get(`dialogs`);
+    },
+    getMessages(userId) {
+        return instance.get(`dialogs/${userId}/messages`);
+    },
+    sendMessage(userId, body) {
+        return instance.post(`dialogs/${userId}/messages`, body);
+    },
+    getIsViewed(messageId) {
+        return instance.get(`dialogs/messages/${messageId}/viewed`);
+    },
+    spam(messageId) {
+        return instance.post(`dialogs/messages/${messageId}/spam`);
+    },
+    deleteMsg(messageId) {
+        return instance.delete(`dialogs/messages/${messageId}`);
+    },
+    deleteMsg(messageId) {
+        return instance.put(`dialogs/messages/${messageId}/restore`);
+    },
 }
             

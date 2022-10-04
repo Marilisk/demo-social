@@ -1,0 +1,75 @@
+
+.textareaWrap {
+    margin: 0;
+    display: flex;
+}
+
+.textarea {
+    background: #ececec;
+    border-radius: 25px;
+    color: #1D2124;
+    height: 2em;
+    border: 2px solid transparent;
+    padding: 6px 18px;
+    padding-bottom: 10px; 
+    font-weight: 400;
+    font-size: 14px;
+    width: 63%;
+    overflow-y: hidden;
+    resize: none;
+}
+
+.textarea:focus {
+    background: white;
+    outline: none;
+    border: 2px solid #E9EEF0;
+}
+.textarea:hover {
+    background: #E9EEF0;
+    
+}
+.button {
+    border-radius: 50px;
+    box-sizing: border-box;
+    content: "";
+    cursor: pointer;
+    height: 32px;
+    display: inline-block;
+    margin-left: 8px;
+    margin-top: 6px;
+    max-width: 110px;
+    background: #0072E1 ;
+    transition-duration: 150ms;
+    transition-property: transform, background-color;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    color: white;
+    border: 2px solid transparent;
+    
+}
+.button:hover {
+    background: #E1F3F3;
+
+}
+.button:disabled {
+    background: #E1F3F3;
+
+}
+.button span {
+    font-size: inherit;
+    font-weight: 600;
+    margin: 0px;
+    margin-top: -2px;
+    display: block;
+}
+.error {
+    color: fuchsia;
+    border: 1px solid fuchsia;
+}
+
+
+
+
+
+
+
+

@@ -1,28 +1,25 @@
 import React from "react";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { useCallback } from "react";
-//import { switchShowAppModeAC } from '../../redux/app-reducer.js';
 import { useSelector } from "react-redux";
 import { updateProfileThunkCreator } from '../../redux/profile-reducer.js';
 import EditProfileForm from "./EditProfileForm.jsx";
 
-const EditProfileContainer = (props) => {
-
+const EditProfileContainer = ({}) => {
     const dispatch = useDispatch();
-    /* const switchShowAppMode = useCallback( () => {
-        dispatch(switchShowAppModeAC());
-    }) */
-    const updateProfile = useCallback( (data) => {
-        dispatch(updateProfileThunkCreator(data));
+    const updateProfile = useCallback( (json, data) => {
+        //console.log(data);
+        dispatch(updateProfileThunkCreator(json, data));
     })
+    const profile = useSelector(state => state.profilePage.profile);
 
-    const city = useSelector(state => state.profilePage.city);
+    const disabled = useSelector(state => state.profilePage.buttonDisabled);
 
     return <div>
-
         <EditProfileForm 
             updateProfile={updateProfile}
-            city={city} 
+            profile={profile} 
+            disabled={disabled}
         />
     </div>
 }

@@ -7,27 +7,18 @@
 }
 .appLogo {
   height: 57px;
-  margin-top: 8px;
+  margin-top: 12px;
   
 }
 .header img { 
   cursor: pointer;
 }
-.loginnedName {
-  font-weight: 600;
-  padding: 0 0 1em 0;
-  margin: 0 auto;
-  color: white;
-}
-.loginnedName:hover {
-  color: #0072E1;
-}
+
 .searchBar {
   margin: 19px auto;
+  margin-top: 15px;
   width: 400px;
   position: relative;
-
-  
 }
 .searchInput {
   background: #F4F4F5;
@@ -37,8 +28,6 @@
   padding: .2em 2em;
   font-size: 24px;
   font-weight: 800;
-  
-
 }
 .searchInput:focus {
   outline: none;
@@ -49,40 +38,56 @@
   left: 12px;
   top: 9px;
 }
-
+.portrait {
+  width: 24px;
+  fill: #0072E1;
+  margin-top: 8px;
+  margin-right: 8px;
+}
 
 .loginBlockNotAuth {
-  background: #0072E1;
-  height: 2.2em;
-  width: fit-content;
-  padding: .2em 1.1em .7em 1.1em; 
-  margin: 15px 50px auto 0; 
-  cursor: pointer;
-  border-radius: 38px;
+  cursor: pointer;  
 }
 
-.loginBlockNotAuth:hover a {
+.loginBlockNotAuth:hover {
   color: #0072E1;
   cursor: pointer;
+  opacity: 0.6;
 }
 .loginBlockNotAuth:hover {
-  background: white;
-  border: 1px solid #0072E1;
-  box-sizing: border-box;
-  color: #0072E1;
   cursor: pointer;
 }
+.loginnedName {
+  font-weight: 600;
+  color: #0072E1;
+  display: flex;
+  margin-top: 16px;
+}
+.loginnedName:hover {
+  color: #0072E1;
+}
+
+.loginnedName span {
+  margin-top: 6px;
+  display: inline-block;
+}
+.loginnedName div {
+  padding: 0;
+}
+
 .loginLink {
   font-size: 16px;
   font-weight: 600;
-  color: white;
+  color: #0072E1;
+  margin-top: 26px;
+  display: block;
 }
 .loginLink:hover {
   color: #0072E1;
   cursor: pointer;
 }
 .logoutArrowWrapper {
-  margin: 0 100px 0 0
+  margin: 0 110px 0 auto;
 }
 .logoutArrow {
   padding-top: 25px;
@@ -90,6 +95,8 @@
 .logoutArrow:hover {
   opacity: 0.6;
 }
+
+
 
 
 

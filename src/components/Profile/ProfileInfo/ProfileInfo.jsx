@@ -21,7 +21,7 @@ const ProfileInfo = ({currentUserId, authorisedUserId, profile, status, isAuth})
     console.log('isOwner');
     console.log(isOwner);
 
-    if (!profile) {   // мигание возникает если это включить
+    if (!profile) {   
         return <Preloader />
     }   
     //debugger;

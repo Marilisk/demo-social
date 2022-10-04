@@ -9,27 +9,36 @@
 .headFlexWrapper {
     display: flex;
     margin-top: 1em;
+    
+    width: 700px;
 }
 
 h2 {
     font-size: 26px;
+    text-align: left;
+    margin-left: 32px;
+    margin-bottom: 18px;
+    display: inline-block;
 }
 .avaWrapper {
     margin-right: 2em;
-    /* height: 100px; */
+    margin-top: 40px;
+    padding: 0;
+    height: 140px;
+    overflow: hidden;
+    min-width: 140px;
 }
 .userAva {
     /* width: 100%; */
-    border-radius: 30%;
-    height: 150px;
-    
+    border-radius: 15%;
+    height: 140px;
+    margin-top: -2px;
+    margin-left: -2px;
 }
-
 
 .editBlock {
     position: relative;
     display: block;
-    
 }
 .editBlock button {
     display: inline-flex;
@@ -66,13 +75,50 @@ h2 {
     font-size: 14px;
     font-weight: 700;
     padding: .8em;
+    cursor: pointer;
 }
 .modalLink:hover {
     color: inherit;
     cursor: pointer;
 }
+.statusBlock {
+    display: flex;
+    cursor: pointer;
+} 
+.statusInput {
+    font-size: 14px;
+    color: inherit;
+    padding: .3em;
+    font-weight: 600;
+    width: 260px;
+    border: none;
+    cursor: pointer;
+    height: 3em; 
+}
+.statusInput:focus {
+    border: 2px solid #DBE2E6;
+    outline: none; 
+}
+.icon {
+    width: 14px;
+    margin-right: 8px;
+    fill: #1D2124;
+    display: inline;
+}
+
+.invisible {
+    display: none;
+}
+.label {
+    font-size: inherit;
+    cursor: inherit;
+}
+
 .description {
     display: block;
+    font-size: 16px;
+    margin-bottom: 18px;
+    font-weight: 400;
 }
 .skillsWrapper {
     margin-top: 5em;
@@ -111,5 +157,40 @@ h2 {
     display: inline-block;
     border: 2px solid #5E737D;
 }
-
+.followWrapper {
+    margin-left: 16px;
+    /* border: 1px solid rosybrown; */
+}
+.followButton {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+    color: #1D2124; 
+    width: 115px;
+    height: 38px;
+    border: 2px solid #1D2124;
+    border-radius: 20px;
+    background: white;
+}
+.followButton:hover {
+    background: #eaeaea;
+    transition: 200ms;
+}
+.followButton:focus {
+    background: white;
+}
+.followButton:disabled {
+    background: #eaeaea;
+    color: #5E737D;
+    transition: 200ms;
+}
+.followText {
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    margin: 8px auto 0 auto;
+    color: inherit;
+}
     

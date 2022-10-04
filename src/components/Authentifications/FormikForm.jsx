@@ -1,10 +1,7 @@
 import React, {useState} from "react";
-import { BrowserRouter as Router, Navigate, NavLink, useLocation, useParams, useNavigate } from "react-router-dom";
-import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
-import { createBrowserHistory } from "history";
-
+import { NavLink, useLocation, useParams, useNavigate } from "react-router-dom";
 import { useFormik } from 'formik';
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import classes from './formikForm.module.css';
 import { loginFormThunkCreator } from './../redux/auth-reducer.js';
 import lock from './../../images/loginForm/lockIcon.svg';
@@ -23,34 +20,49 @@ const validate = values => {
 }
 
 const FormikForm = (props) => {  
+    const email = useSelector(state => state.auth.email);
+    const login = useSelector(state => state.auth.login);
+    const isAuth = useSelector(state => state.auth.isAuth);
+    const errorMessages = useSelector(state => state.auth.errorMessages);
+    const captchaUrl = useSelector(state => state.auth.captchaUrl);
+
     function togglePasswordVisibility(value) {
         showPasswordVisibility(value);
     }
     const [showPassword, showPasswordVisibility] = useState(false);
 
     let location = useLocation();
-    let from = location.state?.from?.pathname || "/mypage";
-    console.log('from ' + from);
-    let navigate = useNavigate();   
+    let from = location.state?.from?.pathname || "/users" ;
+    //console.log('from ' + from);
+    let navigate = useNavigate(); 
+    
+    const dispatch = useDispatch();
+    const loginForm = (formData) => {
+        dispatch(loginFormThunkCreator(formData))
+    }
 
     const formik = useFormik({
         initialValues: {
-            email: props.email,
+            email: ''/* email */,
             password: '',
             rememberMe: false, 
+            captcha: '',
         },
         validate, 
         onSubmit: (values, actions) => {
-            props.loginFormThunkCreator(values);
+            loginForm(values);
             actions.resetForm({
                 email: '',
                 password: '',
-                rememberMe: null,                                    
+                rememberMe: null,  
+                captcha: null,                                  
             });
-            navigate(from, {replace: true});
+            
         }
     });
-
+    if (isAuth) {
+        navigate(from, {replace: true});
+    }
     /* if (props.isAuth) {
         return <Navigate to={'/profile'} replace={true}/>
     }; */ 
@@ -89,6 +101,20 @@ const FormikForm = (props) => {
 
                         <div className={classes.iconEye} onClick={ showPassword ? () => togglePasswordVisibility(false) : () => togglePasswordVisibility(true)  } > </div>
                     </div>
+                    { captchaUrl && 
+                    <div>
+                        <img src={captchaUrl} alt='gh' /> 
+                        <input id={'captcha'}
+                            name={'captcha'}
+                            placeholder={'captcha'}
+                            value={formik.values.captcha}
+                            onChange={formik.handleChange}
+                            className={classes.input} 
+                            autoFocus={captchaUrl}
+                        />
+                    </div>
+                    
+                    }
                     <div className={classes.checkBoxContainer}>
                         <input id={'rememberMe'} 
                                 name={'rememberMe'} 
@@ -103,16 +129,17 @@ const FormikForm = (props) => {
                         
                     </div>
 
-                    {props.errorMessages && <div className={classes.errorMessage}><img src={errorIcon}/> {props.errorMessages}</div>}
+                    {errorMessages && <div className={classes.errorMessage}><img src={errorIcon}/> {errorMessages}</div>}
 
                     <button type={'submit'} className={classes.submitButton}>
                         Войти
                     </button>
 
+                    <span className={classes.skip}>
                     <NavLink to={from}>
                         продолжить без авторизации
                     </NavLink>
-
+                    </span>
                 </div>
             </form>
         </div>
@@ -120,20 +147,8 @@ const FormikForm = (props) => {
        
 }
 
-let mapStateToProps = (state) => ({
-    email: state.auth.email,
-    login: state.auth.login,
-    isAuth: state.auth.isAuth,
-    errorMessages: state.auth.errorMessages,
-});
-let mapDispatchToProps = (dispatch) => {
-    return {
-        loginFormThunkCreator: (formData) => {
-            dispatch(loginFormThunkCreator(formData));
-        },      
-    };    
-};
 
-let ConnectedForm = connect (mapStateToProps, mapDispatchToProps) (FormikForm);
 
-export default ConnectedForm;
+//let ConnectedForm = connect (mapStateToProps, mapDispatchToProps) (FormikForm);
+
+export default FormikForm;

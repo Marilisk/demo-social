@@ -1,54 +1,51 @@
 import React from "react";
-import s from './ProfileInfo.module.css';
+import s from './../../MyPage/MyPage.module.css';
 import { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
-import { updateStatusThunkCreator } from "../../redux/profile-reducer";
+import { updateStatusThunkCreator } from "../../redux/profile-reducer.js";
+import note from './../../../images/myPage/note.svg';
 
 const ProfileStatusWithHooks = (props) => {
     const dispatch = useDispatch();
-
-    let [editMode, setEditMode] = useState(false);
-    let [status, setStatus] = useState(props.status);
-
     useEffect( () => {
         setStatus(props.status);
     }, [props.status]);
 
-    let activateEditMode = () => { 
-        setEditMode(true);
+    const [editMode, setEditMode] = useState(false);
+    const [status, setStatus] = useState(props.status);
+
+    const activateEditMode = () => { 
+        if (props.isOwner) {
+            setEditMode(true);
+        } 
     } 
-    let deActivateEditMode = (status) => {
-        setEditMode(false);
+    const deActivateEditMode = () => {
         dispatch(updateStatusThunkCreator(status));
+        setEditMode(false);
     }
-
-    let onStatusChange = (event) => {
-        setStatus(event.currentTarget.value);
-    }
-
-    let resetStatus = () => {
-        setStatus('');
+    let onStatusChange = (value) => {
+        setStatus(value);
     }
     
-    return <div>
-            { ! editMode && 
+    return <div className={s.statusBlock}>
+            { !editMode && 
             <div>
-                <span className={s.span} onClick={activateEditMode} >
+                <span className={s.description} onClick={activateEditMode} >
+                    <img src={note} className={s.icon} alt='' />
                     {status || '*****'}
                 </span> 
             </div>
             }    
             { editMode && 
                 <div>
-                    <input  onChange={onStatusChange} 
+                    <input  onChange={(event) => onStatusChange(event.currentTarget.value)} 
                             autoFocus={true} 
                             className={s.statusInput} 
-                            onBlur={deActivateEditMode} 
+                            onBlur={() => deActivateEditMode()} 
                             value={status} />
-                    <button onClick={resetStatus}>обновить статус</button>
+                    
                 </div>
             }
-            
     </div>
     
 }

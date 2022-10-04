@@ -1,40 +1,46 @@
 
 .nav {
-    width: 228px;
-    border-right: 2px solid #DBE2E6;
+    width: 160px; 
     font-size: 14px;
     line-height: 20px;
-    height: 95vh;
+    /* height: 95vh; */
     margin-top: 0;
+    margin-right: 26px;
     padding-top: 2px;
 }
 .item, .active {
     cursor: pointer;
     color: #1D2124;
-    display: flex;
-    justify-content: flex-start;
     padding: .3em;
+}
+.buttonWrapper {
+    display: flex;
+    justify-content: flex-start; 
+    flex-wrap: nowrap;
     border-radius: 25px;
-    margin-right: 1em;
+    height: 35px;
+    padding: 4px;
+    padding-left: 12px;
+    padding-top: 8px;
 }
 .item p {
-    display: inline-block;
-    font-size: 16px;
-    margin-top: 1px;
-    
+    font-size: 14px;
 }
-.item:hover {
+.active p {
+    color: #0072E1;
+    font-size: 16px;
+}
+.buttonWrapper:hover {
     background: #F4F4F5;
-    
 }
 
 .svg {
     width: 18px;
     height: 18px;
-    /* border: 1px solid black; */
     box-sizing: padding-box;
     fill: #1D2124;
-    margin: 2px 7px auto auto;
+    display: inline-block;
+    margin-right: 6px;
 }
 .active svg {
     fill: #0072E1;
@@ -43,8 +49,4 @@
 .active {
     font-weight: 600;
     color: #0072E1;      
-}
-
-.space {
-    margin-bottom: 80px;
 }

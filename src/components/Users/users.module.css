@@ -1,32 +1,84 @@
 * {
     box-sizing: border-box;
 }
+.selectWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+    margin: 0 auto;
+}
+.selectWrapperAbled {
+    box-shadow: 0 2px 5px 1px rgb(33 42 54 / 15%);
+
+}
+.selectDisabled, .selectAbled {
+    border: 1px solid #bcc9d1;
+    border-radius: 4px;
+    width: 45%;
+    cursor: pointer;
+}
+.selectAbled {
+    box-shadow: inset 0 2px 5px 1px rgb(33 42 54 / 15%);
+}
+.selectDisabled:hover {
+    box-shadow: 0 2px 5px 1px rgb(33 42 54 / 15%);
+    transition: 300ms;
+}
+.selectHeader, .selectText {
+    margin: 20px;
+    display: block;
+}
+.selectText {
+    display: block;
+}
+
 .list {
     background: white;
-    width: 660px;
     margin: 0 auto;
     margin-top: 10px;
     border-radius: 30px;
 }
+.usersGrid {
+    display: grid;
+    grid-template-columns: 22% 22% 22% 22%;
+    grid-template-rows: 330px 330px 330px;
+}
+h2 {
+    text-align: left;
+}
 .avaWrapper {
-    width: 90px;
-    border-radius: 20px;
+    width: 130px;
+    height: 130px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.userAva:hover {
+    box-shadow: 0 2px 5px 1px rgb(33 42 54 / 15%);
 }
 .userAva {
-    width: 70px;
+    /* vertical-align: bottom; */
+    width: 102%;
+    height: 102%; 
     display: block;
-    margin: 0 auto;
-    margin-top: .35em;
+    margin: 0;
+    border-radius: 18px;
+    margin-top: -6px;
+    margin-left: -6px; 
+    
 }
-.usersList {
-    display: flex;
-    justify-content: space-between;  
-    margin: .6em;
+.defaultAva {
+    margin: 0;
+    width: 100%;
+}
+.defaultAva:hover {
+    box-shadow: 0 2px 5px 1px rgb(33 42 54 / 15%);
+    border-radius: 18px;
+}
+.usersList { 
+    margin: 10px;
     border-radius: 20px;
     padding-left: 14px;
-}
-.usersList:hover, .avaWrapper:hover {
-    background: #F4F4F5;
+   
 }
 
 .usersList div {
@@ -35,12 +87,20 @@
 .userInfo {
     width: 380px;
 }
-.name {
-    font-size: 22px;
+
+.name, .name a {
+    font-size: 16px;
     font-weight: 500;
+    color: #1D2124;    
+}
+.name:hover, .name a:hover {
+    /* text-shadow: 0 0 2px rgb(33 42 54 / 35%); */
+    /* font-size: 18px; */
+    /* padding-top: 6px; */
+    
 }
 .status {
-    font-size: 14px;
+    font-size: 10px;
     color: #626570;
 }
 .geo {
@@ -48,59 +108,73 @@
     color: #8F9199;
     margin-top: .6em;
 }
+
 .followButton {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 12px;
     width: 115px;
-    height: 34px;
-    background: #EFF0F1;
-    border: none;
-    border-radius: 20px 20px 20px 20px;
-    margin-top: 1.8em;
-    margin-right: 1em;
+    height: 38px;
+    border: 2px solid #1D2124;
+    border-radius: 20px/*  20px 20px 20px */;
+    background: white;
 }
 .followButton:hover {
-    background: white;
-    color: #0072E1;
+    background: #eaeaea;
     transition: 200ms;
 }
 .followText {
     display: inline-block;
     text-align: center;
-    font-size: 16px;
-    margin: .2em auto;
+    font-size: 14px;
+    margin: 8px auto 0 auto;
 }
 .pageNumbers {
+    margin: 20px auto;
+    width: 200px;
+    height: 80px;
     display: flex;
     justify-content: space-evenly;
     cursor: pointer;
     padding: .4em;
     text-align: center;
 }
-.selestedPage {
-    font-weight: 600;
+.selectedPage, .commonPage {
+    font-weight: 700;
+    font-size: 16px;
     width: 2em;
-    background: #E9EEF0;
-    padding: .3em .2em .2em .2em;
+    /* background: #E9EEF0; */
+    padding: 6px;
     text-align: center;
     border-radius: 20px;
+    margin: 0 10px;
+}
+.commonPage {
+    background: white;
+    font-weight: 400;
+    font-size: 14px;
+    padding-bottom: 0;
 }
 .buttons {
     color: #1D2124;
-    cursor: pointer;
-    width: 5em;
-    padding: .3em .5em .5em .5em;
-    font-size: 16px;
+    width: 30px;
+    font-size: 18px;
     font-weight: 600;
-    border: 2px solid #1D2124;
-    border-radius: 20px;
-    background: white;
+    background: white; 
+    border: none;
 }
-.buttons:hover{
-    background: #E9EEF0;
+
+.angleRight, .angleLeft {
+    margin-top: 6px;
+    cursor: pointer;
+    padding: 0;
 }
+.angleRight:hover, .angleLeft:hover {
+    width: 28px;
+    margin-top: 2px;
+}
+
 
 

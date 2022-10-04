@@ -1,5 +1,5 @@
 import React from "react";
-import { connect, useDispatch, useSelector } from 'react-redux/es/exports.js';
+import { useDispatch, useSelector } from 'react-redux/es/exports.js';
 import Profile from "./Profile";
 import { setUserProfileActionCreator, getUserProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator } from "../redux/profile-reducer.js";
 import { setLoginThunkCreator } from "../redux/auth-reducer.js";
@@ -16,8 +16,6 @@ const ProfileContainer = (props) => {
     
     let userId;    
     let params = useParams();
-    /* console.log('params');
-    console.log(params); */
     if (!params.userId /* !Object.keys(params).length */ ) {
         userId = authorisedUserId;
     } else {
@@ -42,32 +40,8 @@ const ProfileContainer = (props) => {
             /> 
 }
 
-let ProfileContainerAuthRedirectHOC = withAuthRedirect(ProfileContainer); // редирект если не авторизован
 
-let mapStateToProps = (state) => ({
-    //profile: state.profilePage.profile,
-    //auth: state.auth.isAuth,
-    //authorisedUserEmail: state.auth.email,
-    //status: state.profilePage.status, 
-});
 
-/* export function withRouter(Component) {
-    function ComponentWithRouterProp(props) {
-        let location = useLocation();
-        let navigate = useNavigate();
-        let params = useParams();
-        
-        return (
-            <Component {...props} router={{ location, navigate, params }} />
-        );
-    }
-    return ComponentWithRouterProp;
-} */
-
-export default /* connect (mapStateToProps, {setUserProfileActionCreator, 
-                                            getUserProfileThunkCreator,
-                                            getStatusThunkCreator,
-                                            updateStatusThunkCreator,
-                                            setLoginThunkCreator }) */  (ProfileContainerAuthRedirectHOC);
+export default ProfileContainer;
 
 

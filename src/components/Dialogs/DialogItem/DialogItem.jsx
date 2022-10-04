@@ -1,16 +1,29 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import classes from './../Dialogs.module.css';
-
+import React, { useRef } from "react";
+import c from './../Dialogs.module.css';
 import defaultAvatar from './../../../images/default_Avatar.jpg';
+import { MessageForm } from "../AddMessageForm/messageForm";
+import { useEffect } from "react";
 
+const DialogItem = ({ msgs }) => {
+    let msgElements = msgs.messages.map(elem => <div key={elem.id}
+        className={elem.authorId === 0 ? c.authorMessage : c.message}>
+        {elem.body}
+    </div>
+    ).reverse();
 
+    const dialog = useRef(null);
+    useEffect( () => {
+        console.log('dialog useeffect');
+        dialog.current.scrollIntoView();
+    }, [msgs.messages.length])
+    
+    return <div>
+        <div className={c.dialog}>
+            {msgElements}
+            <div className={c.scrollRef} ref={dialog}>{/* last Element */}</div>
+        </div>
+        <MessageForm userId={msgs.userId} />
+    </div>
+}
 
-const DialogItem = (props) => {
-     let path = '/dialogs/' + props.id;
-     return <div className={classes.dialog}>
-         <NavLink to={path} ><img alt='' src={defaultAvatar}></img>{props.name}</NavLink>
-     </div>
- }
-
- export default DialogItem;
+export default DialogItem;
