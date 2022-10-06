@@ -3,7 +3,6 @@ import c from './messageForm.module.css';
 import { useFormik } from 'formik';
 import { useDispatch } from "react-redux";
 import { sendMessageAC } from "../../redux/dialogs-reducer";
-import { act } from "react-dom/test-utils";
 
 
 export const MessageForm = ({userId}) => {
@@ -19,8 +18,6 @@ export const MessageForm = ({userId}) => {
             errors.body = 'длина сообщения не может быть больше 300 символов';
         } 
         increaseHeight(Math.floor(values.body.length / 50));
-        //console.log(errors);
-        //disabled = Object.keys(errors?.body).length;
         return errors;
     }
 
@@ -49,7 +46,7 @@ export const MessageForm = ({userId}) => {
                         <span>отправить</span>
             </button>   
         </div>
-        <span className={c.error}>{errors.body}</span>
+        
     </form>
 } 
 

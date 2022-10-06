@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import { useDispatch, useSelector } from 'react-redux/es/exports.js';
 import Profile from "./Profile";
 import { setUserProfileActionCreator, getUserProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator } from "../redux/profile-reducer.js";
@@ -16,7 +16,7 @@ const ProfileContainer = (props) => {
     
     let userId;    
     let params = useParams();
-    if (!params.userId /* !Object.keys(params).length */ ) {
+    if (!params.userId  ) {
         userId = authorisedUserId;
     } else {
         userId = params.userId;
@@ -45,3 +45,4 @@ const ProfileContainer = (props) => {
 export default ProfileContainer;
 
 
+ */

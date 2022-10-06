@@ -13,7 +13,6 @@ const DialogItem = ({ msgs }) => {
 
     const dialog = useRef(null);
     useEffect( () => {
-        console.log('dialog useeffect');
         dialog.current.scrollIntoView();
     }, [msgs.messages.length])
     

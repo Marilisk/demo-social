@@ -1,28 +1,41 @@
 import React from 'react';
-import classes from './Post.module.css';
+import c from './Post.module.css';
 import Ava from './../../../../images/default_Avatar.jpg';
+import likes from './../../../../images/myPage/posts/likes.svg';
+import like from './../../../../images/myPage/posts/like.svg';
+import trash from './../../../../images/myPage/posts/trash.svg';
 
-const Post = function(props) {
+const Post = function ({ date, message, count, pressLike, postId, deletePost }) {
 
-    let show = props.message;
-    let count = props.likeCount;
-    let date = props.date;
-    
-    return <div className={classes.item}>
-        <div className={classes.twoCol}>
-            <div className={classes.postAvaWrapper}>
-                <img className={classes.postAvaImg} alt='defaultAva' src={Ava} />
+    return <div className={c.item}>
+        <div className={c.twoCol}>
+            <div className={c.postAvaWrapper}>
+                <img className={c.postAvaImg} alt='defaultAva' src={Ava} />
             </div>
-            <p className={classes.postText}>{show}</p>
-            
-        </div> 
-        <p className={classes.date}>{date}</p>
-        <p className={classes.like}>like {count}</p>
-        
-        
-        
+            <p className={c.date}>{date}</p>
+            <div className={c.like}>
+
+                <div className={c.iconWrapper}>
+                    <img className={c.likesIcon} alt='' src={likes} />
+                </div>
+                <span>{count}</span>
+                <div className={c.iconWrapper} onClick={() => pressLike(postId)} >
+                    <img className={c.likeIcon} alt='' src={like} />
+                </div>
+            </div>
+            <div className={c.trashIconWrapper} onClick={() => deletePost(postId)} >
+            <img className={c.trashIcon} alt='' src={trash} />
+        </div>
+        </div>
+        <p className={c.postText}>{message}</p>
+
+        {/* <div className={c.trashIconWrapper} onClick={() => pressLike(postId)} >
+            <img className={c.trashIcon} alt='' src={trash} />
+        </div> */}
+
+
     </div>
-        
+
 };
 
 

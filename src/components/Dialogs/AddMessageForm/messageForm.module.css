@@ -64,6 +64,9 @@
 .error {
     color: fuchsia;
     border: 1px solid fuchsia;
+    height: 60px;
+    width: 200px;
+    display: block;
 }
 
 

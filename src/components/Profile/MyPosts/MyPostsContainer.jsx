@@ -1,22 +1,28 @@
-import { addPostActionCreator } from '../../redux/profile-reducer.js';
+import { addPostActionCreator, deletePostAC, likePostAC } from '../../redux/profile-reducer.js';
 import MyPosts from './MyPosts';
-import { connect } from 'react-redux/es/exports.js';
+import { useDispatch, useSelector } from 'react-redux/es/exports.js';
 
-let mapStateToProps = (state) => {
-    return {
-        posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText,
-    }
-};
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addPost: (newPostText) => {
-            dispatch(addPostActionCreator(newPostText));
-        }
-    }
-};
 
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);  
+const MyPostsContainer = () => {
+    const dispatch = useDispatch();
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = today.getMonth();
+    let day = today.getDate();
+    let formattedDate = `${year}-${month + 1}-${day}`
+    const addPost = (newPostText) => {
+        dispatch(addPostActionCreator(newPostText, formattedDate));
+    }
+    const posts = useSelector( state => state.profilePage.posts);
+    const pressLike = (postId) => {
+        dispatch(likePostAC(postId));
+    }
+    const deletePost = (postId) => {
+        dispatch(deletePostAC(postId));
+    }
+
+    return <MyPosts addPost={addPost} posts={posts} pressLike={pressLike} deletePost={deletePost} />
+} ;  
 
 
 export default MyPostsContainer;

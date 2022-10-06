@@ -20,13 +20,15 @@
     margin: 15px 0;
     padding: 15px;
     padding-bottom: 20px;
+    padding-left: 30px;
+
     border-radius: 16px;
     transition: background 200ms ease 0s;
 
 }
 .active {
     font-weight: 700;
-    padding-left: .5em;
+    /* padding-left: .5em; */
     background: #ececec;
 }
 .dialogsItems {

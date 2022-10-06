@@ -1,14 +1,9 @@
-* {
-    box-sizing: border-box;
-}
-
 .postFormWrapper {
-    width: 100%;
+    width: 492px;
     border: 2px solid #DBE2E6;
     border-radius: 5px;
-    margin: 0 15px;
+    margin: 0;
     padding: 30px;
-    
 }
 .postForm {
     display: flex;
@@ -19,25 +14,22 @@
 }
 
 .content {
-    /* grid-area: c;
-    display: flex;
-    justify-content: flex-start; */
     margin: .6em 0;
+    margin-top: 60px;
 }
 .postsList {
-    width: 320px;
+    width: 492px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column-reverse;
-    background: white;
 }
 .postsList img{
     height: 80%;
     margin: 10% auto;
 }
-.content h2 {
+/* .content h2 {
     font-size: 20px;
-}
+} */
 .post {
     background: white;
     font-size: 18px;
@@ -47,11 +39,12 @@
     font-size: 18px;
     padding: .3em;
     font-weight: 600;
-    width: 360px;
+    width: 300px;
     border: none;
     cursor: pointer;
     height: 5em;
-    
+    resize: none;
+    border: 2px solid transparent;
 }
 .content textarea:focus {
     border: 2px solid #DBE2E6;
@@ -67,15 +60,16 @@
     color: white;
     display: flex;
     justify-content: space-between;
-    font-size: 16px;
-    width: 138px;
+    font-size: 14px;
+    width: 120px;
     height: 36px;  
     background: #0072E1;  
     border: none;
     border-radius: 20px;
-    
     font-weight: 600;
-    padding: .55em;
+    padding: .7em;
+    margin-left: 20px;
+    margin-top: 52px;
 }
 .content button:hover {
     background: #0072E1;
@@ -83,9 +77,7 @@
     opacity: 1;
 }
 .content button:disabled {
-    /* color: #DBE2E6;
-    border: 1px solid #DBE2E6; */
-    opacity: .7;
+    opacity: .4;
 }
 .warning {
     font-size: 12px;

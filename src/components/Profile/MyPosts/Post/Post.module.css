@@ -3,12 +3,11 @@
 }
 .item {
     font-size: 18px;
-    display: flex;
     border: 1px solid #E0DFDC;
     border-radius: 5px;
     justify-content: space-between;
     margin: .3em 0;
-    height: 160px;
+    height: 170px;
     background-color: white;
 }
 .item div, .twoCol div {
@@ -18,8 +17,11 @@
     display: flex;
     justify-content: flex-start;
     padding-left: .5em;
-    width: 25em;
+    width: 100%;
     background-color: white;
+}
+.postAvaWrapper {
+    height: 70px;
 }
 .postAvaImg {
     border-radius: 50%;
@@ -28,23 +30,60 @@
 .item p, .twoCol p {
     text-align: left;
     padding: 1em;
-    font-size: 18px;
     background-color: white;
 }
 .postText {
-    width: 20em;
     margin-left: 1em;    
 }
 .date {
-    width: 6em;
-    font-size: 8px;
+    width: 140px;
+    font-size: 14px;
+    color: #5E7381;
     text-align: right;
     padding: 0;
 }
 .like {
-    font-size: 16px;
-    width: 6em;
+    font-size: 14px !important;
+    color: #5E7381;
+    width: 140px;
+    height: 50px;
     padding: 1em;
+    display: flex;
 }
+.iconWrapper, .trashIconWrapper {
+    width: 30px;
+    height: 30px;
+    background: #5E7381;
+    margin-left: 10px;
+}
+.like span {
+    font-size: 14px;
+    border-right: 2px solid #5E7381;
+    margin-top: 5px;
+    margin-left: 4px;
+    padding-right: 6px;
+}
+.likesIcon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    fill: white;
+    background: #5E7381;
+    padding: 4px;
+}
+.likeIcon {
+    color: #5E7381;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.trashIconWrapper {
+    margin-top: 14px;
+    margin-left: 106px;
+   /*  border: 1px solid violet; */
+    cursor: pointer;
+}
+
+
 
 

@@ -9,34 +9,54 @@ const Paginator = ({ totalItemsCount, pageSize, currentPage, onPageChanged, port
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
+        
     };
     let portionCount = Math.ceil(pagesCount / portionSize); // количество порций
     let [portionNumber, setPortionNumber] = useState(1); // номер порции
-    let rightPortionPageNumber = portionNumber * portionSize; // правая граница порции
-    let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1; // левая граница порции
+    let rightPortionPageNumber = portionNumber * portionSize; // стр на правой границе порции
+    let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1; // стр на левой границе порции
+    if (rightPortionPageNumber > pages[-1]) {
+        console.log('!!!!')
+        leftPortionPageNumber = 1;
+        rightPortionPageNumber = portionSize;
+        /* rightPortionPageNumber = Math.ceil(pages.length / pageSize);
+        leftPortionPageNumber = rightPortionPageNumber - portionSize; */
+        setPortionNumber(1);
+        
+    }
+       
+    console.log('pages');
+    console.log(pages);
+    console.log('rightPortionPageNumber ' + rightPortionPageNumber);
+    console.log('leftPortionPageNumber ' + leftPortionPageNumber);
+    console.log('portionNumber ' + portionNumber);
 
-    const showNextPage = () => {
+    const showNextPortion = () => {
+        console.log('showNextPortion ' + portionNumber);
+        
         setPortionNumber(portionNumber + 1);
+        console.log('portionNumber ' + portionNumber);
+        onPageChanged(rightPortionPageNumber + 1);
     };
-    const showPrevPage = () => {
+    const showPrevPortion = () => {
         setPortionNumber(portionNumber - 1);
+        onPageChanged(leftPortionPageNumber - 1);
     };
     return <div className={c.pageNumbers} >
         <div>
-            {portionNumber > 1 && <button className={c.buttons} onClick={showPrevPage}>
+            {portionNumber > 1 && <button className={c.buttons} onClick={showPrevPortion}>
                 <img src={angleLeft} className={c.angleLeft} />
                 </button>}
         </div>
 
-        {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-            .map((p) => {
-
-                return <span key={p} className={currentPage === p ? c.selectedPage : c.commonPage}
-                    onClick={() => onPageChanged(p)} > {p} </span>
+        {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber ).map((p) => {
+            return <span key={p} className={currentPage === p ? c.selectedPage : c.commonPage}
+                onClick={() => onPageChanged(p)} > {p} </span>
             })
         }
+
         <div>
-            {portionNumber < portionCount && <button className={c.buttons} onClick={showNextPage}>
+            {portionNumber < portionCount && <button className={c.buttons} onClick={showNextPortion}>
                 <img src={angleRight} className={c.angleRight} />
                 </button>}
         </div>

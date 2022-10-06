@@ -1,67 +1,30 @@
 import React from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
-import { useFormik } from 'formik';
-import { required, maxLengthCreator } from './../../../utils/validators/validators.js';
+import AddPostForm from './AddPostForm';
 
-let maxLength10 = maxLengthCreator(10);
+const MyPosts = function ({ addPost, posts, pressLike, deletePost }) {
 
-const MyPosts = function(props) {
-    let postsElements = props.posts.map( elem => <Post date={elem.date} message={elem.text} likeCount={elem.likeCount} key={elem.id} /> );
-    let onAddPost = (value) => {
-        props.addPost(value);
-    };
-    
+    let postsElements = posts.map(elem => {
+        let date = new Date(Date.parse(elem.date)).toLocaleString("ru", { day: "numeric", month: 'long', year: 'numeric' });
+        return <Post date={date}
+            message={elem.text}
+            count={elem.likeCount}
+            pressLike={pressLike}
+            postId={elem.id}
+            deletePost={deletePost}
+            key={elem.id} />
+    })
+
     return <div>
         <div className={classes.content} >
-            <AddPostForm onAddPost={onAddPost} />
+            <h2>Мои посты</h2>
+            <AddPostForm onAddPost={addPost} />
         </div>
         <div>
-            <h3>My posts</h3>
             <div className={classes.postsList} >{postsElements}</div>
         </div>
     </div>
 };
-
-const validate = values => {
-    let errors = {};
-    if (!values.newPostText) {
-        errors.newPostText = 'Нельзя публиковать пустой пост';
-    } else if (values.newPostText.length > 10) {
-        errors.newPostText = 'максимум 10 символов';
-    }
-    return errors;
-}
-const AddPostForm = (props) => {
-    const formik = useFormik({
-        initialValues: {
-            newPostText: '',
-        },
-        validate, 
-        onSubmit: (values, actions) => {
-            props.onAddPost(values.newPostText);
-            actions.resetForm({
-                newPostText: '',                                   
-            });
-        } 
-    });
-
-    return <div className={classes.postFormWrapper} >
-        <form onSubmit={formik.handleSubmit} className={classes.postForm}>
-            <div>
-                <textarea name={'newPostText'}  
-                    id={'newPostText'}
-                    placeholder={'Что у Вас нового?'}
-                    value={formik.values.newPostText}
-                    validate={[required, maxLength10]} 
-                    onChange={formik.handleChange}
-                />
-                {formik.errors.newPostText ? <span className={classes.warning}>{formik.errors.newPostText}</span> : null} 
-            </div>
-            <button type={'submit'} disabled={formik.errors.newPostText}>Опубликовать</button> 
-            
-        </form>
-    </div>
-}
 
 export default MyPosts;

@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Users from "./Users";
 import Preloader from "../common/preloader/preloader";
-import { connect, useDispatch, useSelector } from 'react-redux/es/exports.js';
-import { 
-    getUsersThunkCreator,
-    unFollowThunkCreator,
-    followThunkCreator,
-    getAllUsersThunkCreator,
-    getfollowedUsersThunkCreator
-} from '../redux/users-reducer.js';
-import { getPageSize, getTotalUsersCount, getUsersSuperSelector, getCurrentPage, getIsFetching, getFollowingInProgress } from "../redux/users-selectors";
+import { useDispatch, useSelector } from 'react-redux/es/exports.js';
+import { getUsersThunkCreator, getfollowedUsersThunkCreator, setCurrentPageAC } from '../redux/users-reducer.js';
 
-const UsersContainer = (props) => {
+const UsersContainer = () => {
     const dispatch = useDispatch();
 
     const [usersDisplayMode, switchDifferentUsersMode] = useState('all');
     const switchUsersMode = (value) => {
-        switchDifferentUsersMode(value);
+        dispatch(setCurrentPageAC(1));
+        switchDifferentUsersMode(value);    
     } 
     
     const pageSize = useSelector(state => state.usersPage.pageSize);
@@ -24,7 +18,7 @@ const UsersContainer = (props) => {
     const isFetching = useSelector(state => state.usersPage.isFetching);
     const totalUsersCount = useSelector(state => state.usersPage.totalCount);
     const onPageChanged = (pageNumber) => {
-        dispatch(getUsersThunkCreator(pageNumber, pageSize));
+        dispatch(setCurrentPageAC(pageNumber));
     };
     useEffect(() => {
         if (usersDisplayMode === 'all') {
@@ -38,6 +32,8 @@ const UsersContainer = (props) => {
     
     const users = useSelector(state => state.usersPage.users);
     const followingInProgress = useSelector(state => state.usersPage.followingInProgress);
+
+    console.log('currentPage ' + currentPage);
 
     return <>
         {isFetching ? <Preloader /> : null}

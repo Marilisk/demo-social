@@ -1,26 +1,26 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import classes from './Navbar.module.css';
 
 
-const Navbar = function ({ isAuth }) {
+const Navbar = function ({ isAuth, isOwner }) {
 
   return <div>
     <nav className={classes.nav}>
 
       {isAuth &&
-        <NavLink to='/mypage' className={(navDo) => (navDo.isActive /* && !paramsId */) ? classes.active : classes.item}>
+        <NavLink to='/mypage' className={(navDo) => (navDo.isActive && isOwner) ? classes.active : classes.item}>
           <div className={classes.buttonWrapper} >
             <svg className={classes.svg} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="512" height="512"><g id="_01_align_center" data-name="01 align center"><path d="M13.338.833a2,2,0,0,0-2.676,0L0,10.429v10.4a3.2,3.2,0,0,0,3.2,3.2H20.8a3.2,3.2,0,0,0,3.2-3.2v-10.4ZM15,22.026H9V17a3,3,0,0,1,6,0Zm7-1.2a1.2,1.2,0,0,1-1.2,1.2H17V17A5,5,0,0,0,7,17v5.026H3.2a1.2,1.2,0,0,1-1.2-1.2V11.319l10-9,10,9Z" /></g></svg>
             <p>Моя страница</p>
           </div>
         </NavLink>}
 
-      <NavLink to='/profile' className={navDo => navDo.isActive ? classes.active : classes.item} >
+      <NavLink to='/posts' className={navDo => navDo.isActive ? classes.active : classes.item} >
         <div className={classes.buttonWrapper} >
           <svg className={classes.svg} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="512" height="512"><g id="_01_align_center" data-name="01 align center"><path d="M21,24H19V18.957A2.96,2.96,0,0,0,16.043,16H7.957A2.96,2.96,0,0,0,5,18.957V24H3V18.957A4.963,4.963,0,0,1,7.957,14h8.086A4.963,4.963,0,0,1,21,18.957Z" /><path d="M12,12a6,6,0,1,1,6-6A6.006,6.006,0,0,1,12,12ZM12,2a4,4,0,1,0,4,4A4,4,0,0,0,12,2Z" /></g></svg>
-          <p>Profile</p>
+          <p>Посты</p>
         </div>
       </NavLink>
 
@@ -49,12 +49,9 @@ const Navbar = function ({ isAuth }) {
   </div>
 }
 
-const NavbarContainer = () => {
-  const isAuth = useSelector(state => state.auth.isAuth);
+const NavbarContainer = ({initialised, isAuth}) => {
   const isOwner = useSelector(state => state.profilePage.isOwner)
-
   return <Navbar isAuth={isAuth} isOwner={isOwner} />
-
 }
 
 export default NavbarContainer;
