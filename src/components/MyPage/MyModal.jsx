@@ -1,17 +1,7 @@
 import React, { useState } from "react";
 import classes from './MyPage.module.css';
-import defaultAvatar from './../../images/default_Avatar.jpg';
 import dots from './../../images/myPage/menu-dots.svg';
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { savePhotoThunkCreator } from '../redux/profile-reducer.js';
-import briefcase from './../../images/myPage/briefcase.svg';
-import geo from './../../images/myPage/marker.svg';
-import note from './../../images/myPage/note.svg';
-import ProfileStatusWithHooks from "../Profile/ProfileInfo/ProfileStatusWithHooks";
-import EditProfileContainer from "./EditProfile/EditProfileFormContainer";
-import { followThunkCreator, unFollowThunkCreator } from "../redux/users-reducer";
-import Skills from "./Skills/Skills";
+import { NavLink } from "react-router-dom";
 
 export const MyModal = ({savePhoto}) => {
 

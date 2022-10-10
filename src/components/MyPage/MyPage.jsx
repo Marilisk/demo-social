@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classes from './MyPage.module.css';
 import defaultAvatar from './../../images/default_Avatar.jpg';
-import dots from './../../images/myPage/menu-dots.svg';
-import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { savePhotoThunkCreator, setIsOwnerAC } from '../redux/profile-reducer.js';
 import briefcase from './../../images/myPage/briefcase.svg';
@@ -67,11 +65,18 @@ export const MyPage = ({ userId, city, followers, skills, profile, isOwner, stat
             {isOwner ?
                 <MyModal savePhoto={savePhoto} />
                 :
+                <div className={classes.btnsWrapper}>
                 <FollowBlock userId={userId}
                     followingInProgress={followingInProgress}
                     followed={followed}
                     unFollow={unFollow}
                     follow={follow} />
+                
+                <button className={classes.writeMsgBtn} onClick={ () => startDialog(userId, profile.fullName)}>
+
+                    написать сообщение
+                </button>
+                </div>
             }
 
         </section>

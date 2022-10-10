@@ -2,7 +2,6 @@ import React, { useEffect, Suspense } from 'react';
 import c from './App.module.css';
 import {HeaderContainer} from './components/Header/Header-container.jsx';
 import Navbar from './components/Navbar/Navbar';
-import NewsContainer from './components/News/NewsContainer.jsx';
 import { Routes, Route } from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer.js';
 import FormikForm from './components/Authentifications/FormikForm.jsx';
@@ -30,13 +29,11 @@ function App({ initialised, isAuth }) {
       <div className={c.appWrapperContent}>
         <Routes>
           <Route path='/' element={<UsersContainer />} />
-          {/* <Route path='/profile' element={<ProfileContainer />} /> */}
           <Route path='/posts' element={<MyPostsContainer />} />
           <Route path='/users' element={<UsersContainer />} />
           <Route path='/login' element={<FormikForm />} />
           <Route path='/dialogs' element={<Suspense fallback={<div>Загрузка...</div>} ><DialogsContainer isAuth={isAuth} /></Suspense>} />
           <Route path='/dialogs/:userId/*' element={<DialogItem isAuth={isAuth} />} />
-          <Route path='/news' element={<NewsContainer />} />
           <Route path='/formikForm' element={<FormikForm />} />
           <Route path='/mypage/*' element={<MyPageContainer />} />
           <Route path='/mypage/:userId/*' element={<MyPageContainer />} />

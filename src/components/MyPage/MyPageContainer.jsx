@@ -1,20 +1,10 @@
-import React, { useState } from "react";
-import classes from './MyPage.module.css';
-import defaultAvatar from './../../images/default_Avatar.jpg';
-import dots from './../../images/myPage/menu-dots.svg';
-import { NavLink, Route, Routes, useNavigate, useParams } from "react-router-dom";
+import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getStatusThunkCreator, getUserProfileThunkCreator, savePhotoThunkCreator, setIsOwnerAC } from '../redux/profile-reducer.js';
 import { useEffect } from "react";
 import Preloader from "../common/preloader/preloader";
-import briefcase from './../../images/myPage/briefcase.svg';
-import geo from './../../images/myPage/marker.svg';
-import note from './../../images/myPage/note.svg';
-import ProfileStatusWithHooks from "../Profile/ProfileInfo/ProfileStatusWithHooks";
-import EditProfileContainer from "./EditProfile/EditProfileFormContainer";
-import { followThunkCreator, getCurrentUserThunkCreator, unFollowThunkCreator } from "../redux/users-reducer";
-import Skills from "./Skills/Skills";
-import MyPostsContainer from "../Profile/MyPosts/MyPostsContainer";
+import { getCurrentUserThunkCreator } from "../redux/users-reducer";
 import { MyPage } from "./MyPage";
 import { startDialogAC } from "../redux/dialogs-reducer";
 
@@ -64,7 +54,7 @@ const MyPageContainer = (props) => {
     }
     isOwner = (profile.userId === authorisedUserId);
 
-    return <MyPage /* {...props} */
+    return <MyPage 
         userId={userId}
         city={city}
         followers={followers}
