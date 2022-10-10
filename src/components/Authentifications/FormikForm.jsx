@@ -63,9 +63,7 @@ const FormikForm = (props) => {
     if (isAuth) {
         navigate(from, {replace: true});
     }
-    /* if (props.isAuth) {
-        return <Navigate to={'/profile'} replace={true}/>
-    }; */ 
+    
     
     return <section className={classes.main}>
         <div className={classes.modal}>

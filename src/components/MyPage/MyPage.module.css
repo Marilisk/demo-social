@@ -79,8 +79,10 @@ h2 {
 }
 .statusBlock {
     display: flex;
-    cursor: pointer;
 } 
+.ownersStatus {
+    cursor: pointer;
+}
 .statusInput {
     font-size: 14px;
     color: inherit;

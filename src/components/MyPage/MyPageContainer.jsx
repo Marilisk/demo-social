@@ -20,8 +20,6 @@ import { startDialogAC } from "../redux/dialogs-reducer";
 
 
 const MyPageContainer = (props) => {
-    const isAuth = useSelector(state => state.auth.isAuth);
-    const login = useSelector(state => state.auth.login);
     const authorisedUserId = useSelector(state => state.auth.id);
     const city = useSelector(state => state.profilePage.city);
     const followers = useSelector(state => state.profilePage.followersAmount);
@@ -51,6 +49,7 @@ const MyPageContainer = (props) => {
     }, [userId/* , authorisedUserId */]);
     useEffect(() => {
         if (!isOwner && profile) {
+            console.log('myPageContainer useEffect ' + currentPage + profile.fullName);
             dispatch(getCurrentUserThunkCreator(null, currentPage, profile.fullName));
         }
     }, [userId, authorisedUserId, profileExists, followed]);
@@ -64,7 +63,6 @@ const MyPageContainer = (props) => {
         return <Preloader />
     }
     isOwner = (profile.userId === authorisedUserId);
-    dispatch(setIsOwnerAC(isOwner));
 
     return <MyPage /* {...props} */
         userId={userId}

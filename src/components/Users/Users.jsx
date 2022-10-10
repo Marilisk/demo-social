@@ -7,49 +7,51 @@ import { useDispatch } from "react-redux";
 import Paginator from "./Paginator/Paginator.jsx";
 import { SelectUsers } from "./SelectUsers";
 
-const Users = ({totalUsersCount, pageSize, currentPage, onPageChanged, users, followingInProgress, usersDisplayMode, switchUsersMode}) => {
+const Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, users, followingInProgress, usersDisplayMode, switchUsersMode, paginatorNeeded }) => {
     const dispatch = useDispatch();
 
     return <div className={c.list} >
-            <SelectUsers usersDisplayMode={usersDisplayMode} switchUsersMode={switchUsersMode} />
+        <SelectUsers usersDisplayMode={usersDisplayMode} switchUsersMode={switchUsersMode} />
+        {paginatorNeeded &&
+            <Paginator totalItemsCount={totalUsersCount}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChanged={onPageChanged}
+            />
+        }
 
-        <Paginator totalItemsCount={totalUsersCount}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChanged={onPageChanged}
-        />
 
         <section className={c.usersGrid}>
-        {users.map(u => <div key={u.id} className={c.usersList}>
-            <NavLink to={'/mypage/' + u.id}>
-                <div className={c.avaWrapper}>
-                    <img className={u.photos.small != null ? c.userAva : c.defaultAva} alt='' src={u.photos.small != null ? u.photos.small : defaultAva} ></img>
-                </div>
-            </NavLink>
-            <NavLink key={u.id * 2} to={'/mypage/' + u.id}>
-                <div className={c.userInfo}>
-                    <div className={c.name}>{u.name}</div>
-                    <div className={c.status}>{u.status != null ? u.status : '...'}</div>
-                    <div className={c.geo}>Russia, Moscow</div>
-                </div>
-            </NavLink>
+            {users.map(u => <div key={u.id} className={c.usersList}>
+                <NavLink to={'/mypage/' + u.id}>
+                    <div className={c.avaWrapper}>
+                        <img className={u.photos.small != null ? c.userAva : c.defaultAva} alt='' src={u.photos.small != null ? u.photos.small : defaultAva} ></img>
+                    </div>
+                </NavLink>
+                <NavLink key={u.id * 2} to={'/mypage/' + u.id}>
+                    <div className={c.userInfo}>
+                        <div className={c.name}>{u.name}</div>
+                        <div className={c.status}>{u.status != null ? u.status : '...'}</div>
+                        <div className={c.geo}>Russia, Moscow</div>
+                    </div>
+                </NavLink>
 
-            <div>
-                {u.followed ?
-                    <button disabled={followingInProgress.some(id => id === u.id)} className={c.followButton} onClick={() => {
-                        dispatch(unFollowThunkCreator(u.id));
+                <div>
+                    {u.followed ?
+                        <button disabled={followingInProgress.some(id => id === u.id)} className={c.followButton} onClick={() => {
+                            dispatch(unFollowThunkCreator(u.id));
+                        }
+                        } ><span className={c.followText}>Отписаться </span></button>
+                        :
+                        <button disabled={followingInProgress.some(id => id === u.id)} className={c.followButton} onClick={() => {
+                            dispatch(followThunkCreator(u.id));
+                        }
+                        } ><span className={c.followText}>Подписаться</span></button>
                     }
-                    } ><span className={c.followText}>Отписаться </span></button>
-                    :
-                    <button disabled={followingInProgress.some(id => id === u.id)} className={c.followButton} onClick={() => {
-                        dispatch(followThunkCreator(u.id));
-                    }
-                    } ><span className={c.followText}>Подписаться</span></button>
-                }
-            </div>
+                </div>
 
-        </div>)
-        }
+            </div>)
+            }
         </section>
     </div>
 };

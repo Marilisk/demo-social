@@ -2,40 +2,30 @@ import React, { useState } from "react";
 import c from './../users.module.css';
 import angleRight from './../../../images/navigationsIcons/angle-right.svg';
 import angleLeft from './../../../images/navigationsIcons/angle-left.svg';
-
+import { useEffect } from "react";
 
 const Paginator = ({ totalItemsCount, pageSize, currentPage, onPageChanged, portionSize = 5 }) => {
     let pagesCount = Math.ceil(totalItemsCount / pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
-        
     };
     let portionCount = Math.ceil(pagesCount / portionSize); // количество порций
     let [portionNumber, setPortionNumber] = useState(1); // номер порции
     let rightPortionPageNumber = portionNumber * portionSize; // стр на правой границе порции
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1; // стр на левой границе порции
-    if (rightPortionPageNumber > pages[-1]) {
+    /* if (rightPortionPageNumber > pages[-1]) {
         console.log('!!!!')
         leftPortionPageNumber = 1;
         rightPortionPageNumber = portionSize;
-        /* rightPortionPageNumber = Math.ceil(pages.length / pageSize);
-        leftPortionPageNumber = rightPortionPageNumber - portionSize; */
         setPortionNumber(1);
-        
-    }
-       
-    console.log('pages');
-    console.log(pages);
-    console.log('rightPortionPageNumber ' + rightPortionPageNumber);
-    console.log('leftPortionPageNumber ' + leftPortionPageNumber);
-    console.log('portionNumber ' + portionNumber);
+    } */
+    useEffect( () => {
+        setPortionNumber(1);
+    }, [totalItemsCount]);
 
     const showNextPortion = () => {
-        console.log('showNextPortion ' + portionNumber);
-        
         setPortionNumber(portionNumber + 1);
-        console.log('portionNumber ' + portionNumber);
         onPageChanged(rightPortionPageNumber + 1);
     };
     const showPrevPortion = () => {

@@ -1,23 +1,43 @@
 import React from "react";
 import Header from './Header.jsx';
 import { setLoginThunkCreator, logoutFormThunkCreator } from './../redux/auth-reducer.js';
-import { connect } from 'react-redux/es/exports.js';
+import { useDispatch, useSelector } from 'react-redux/es/exports.js';
+import { getCurrentUserThunkCreator } from "../redux/users-reducer.js";
+import { redirect, useNavigate } from "react-router-dom";
 
-class HeaderContainer extends React.Component {
-    componentDidMount() {
-        this.props.setLoginThunkCreator();
+export const HeaderContainer = () => {
+    const isAuth = useSelector(state => state.auth.isAuth);
+    const login = useSelector(state => state.auth.login);
+    const id = useSelector(state => state.auth.id);
+    const totalCount = useSelector(state => state.usersPage.totalCount);
+    const nothingFound = useSelector(state => state.usersPage.nothingFound);
+
+    const searchResults = useSelector(state => state.usersPage.users);
+
+    const dispatch = useDispatch();
+    const setLogin = () => {
+        dispatch(setLoginThunkCreator())
     }
-    render() {
-        return <Header {...this.props} />
+    const logout = () => {
+        dispatch(logoutFormThunkCreator());
     }
+    const navigate = useNavigate();
+    const search = (term) => {
+        dispatch(getCurrentUserThunkCreator(null, 1, term, true));
+        if (!nothingFound) {
+            navigate('/users', { state: 'searchResults'});
+            
+        } else {
+            console.log('nothing')
+        }
+    }
+
+    return <Header isAuth={isAuth} 
+        login={login}  
+        id={id} 
+        setLogin={setLogin} 
+        logout={logout}
+        search={search}
+        nothingFound={nothingFound} />
 }
 
-const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth,
-    login: state.auth.login,
-    id: state.auth.id,
-});
-
-export default connect(mapStateToProps,
-                    { setLoginThunkCreator: setLoginThunkCreator,
-                    logoutFormThunkCreator: logoutFormThunkCreator }) (HeaderContainer);

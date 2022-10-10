@@ -16,6 +16,8 @@ let initialState = {
         { id: 2, date: '2022-08-03', text: 'Very important event is happening!', likeCount: 20 },
         { id: 3, date: '2022-08-08', text: 'So tired...', likeCount: 0 },
         { id: 4, date: '2022-08-30', text: 'Hello everybody!!', likeCount: 5 },
+        { id: 5, date: '2022-09-01', text: 'totam rem aperiam, eaque ipsa quae ab illo inventore vitae dicta sunt explicabo?', likeCount: 4},
+        { id: 6, date: '2022-09-14', text: 'Duis aute irure dolor in reprehenderit in voluptate velit esse anim id est laborum.', likeCount: 10},
     ],
     city: 'Москва, Россия',
     followersAmount: 2,
@@ -39,7 +41,6 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
-            //console.log(action.date);
             let newPost = {
                 id: state.posts.length + 1,
                 date: action.date,

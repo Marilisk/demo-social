@@ -60,7 +60,6 @@ export const profileAPI = {
             'Content-type': 'multipart/form-data',
         } })
     },
-
 }
 
 export const authAPI = {

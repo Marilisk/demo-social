@@ -1,6 +1,6 @@
 import React, { useEffect, Suspense } from 'react';
 import c from './App.module.css';
-import HeaderContainer from './components/Header/Header-container.jsx';
+import {HeaderContainer} from './components/Header/Header-container.jsx';
 import Navbar from './components/Navbar/Navbar';
 import NewsContainer from './components/News/NewsContainer.jsx';
 import { Routes, Route } from 'react-router-dom';
@@ -54,7 +54,7 @@ export const AppContainer = () => {
   const isAuth = useSelector(state => state.auth.isAuth);
   useEffect(() => {
     dispatch(initialiseAppThunkCreator());
-  }, []);
+  }, [isAuth]);
 
   return <App initialised={initialised} isAuth={isAuth} />
 }

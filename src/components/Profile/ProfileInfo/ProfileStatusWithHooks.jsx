@@ -37,7 +37,7 @@ const ProfileStatusWithHooks = (props) => {
             </div>
             }    
             { editMode && 
-                <div>
+                <div  className={s.ownersStatus}>
                     <input  onChange={(event) => onStatusChange(event.currentTarget.value)} 
                             autoFocus={true} 
                             className={s.statusInput} 

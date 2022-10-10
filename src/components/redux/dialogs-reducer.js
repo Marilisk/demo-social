@@ -1,5 +1,3 @@
-import { dialogsAPI } from './../../api/api.js';
-
 const SEND_MESSAGE = 'SEND_MESSAGE';
 const START_DIALOG = 'START_DIALOG';
 

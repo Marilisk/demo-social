@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from './MyPage.module.css';
 import defaultAvatar from './../../images/default_Avatar.jpg';
 import dots from './../../images/myPage/menu-dots.svg';
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { savePhotoThunkCreator } from '../redux/profile-reducer.js';
+import { savePhotoThunkCreator, setIsOwnerAC } from '../redux/profile-reducer.js';
 import briefcase from './../../images/myPage/briefcase.svg';
 import geo from './../../images/myPage/marker.svg';
 import note from './../../images/myPage/note.svg';
@@ -12,10 +12,15 @@ import ProfileStatusWithHooks from "../Profile/ProfileInfo/ProfileStatusWithHook
 import EditProfileContainer from "./EditProfile/EditProfileFormContainer";
 import { followThunkCreator, unFollowThunkCreator } from "../redux/users-reducer";
 import Skills from "./Skills/Skills";
+import { MyModal } from "./MyModal";
+import { FollowBlock } from "./FollowBlock";
 
 export const MyPage = ({ userId, city, followers, skills, profile, isOwner, status, followingInProgress, followed, startDialog }) => {
     //console.log('isOwner ' + isOwner);
-    let navigate = useNavigate();
+    useEffect ( () => {
+        dispatch(setIsOwnerAC(isOwner));
+    })
+
     const dispatch = useDispatch();
     const savePhoto = (file) => {
         dispatch(savePhotoThunkCreator(file));
@@ -26,8 +31,6 @@ export const MyPage = ({ userId, city, followers, skills, profile, isOwner, stat
     const follow = () => {
         dispatch(followThunkCreator(userId));
     }
-    
-    const [hiddenMode, changeModalMode] = useState(false);
 
     return <div className={classes.main}>
 
@@ -43,7 +46,7 @@ export const MyPage = ({ userId, city, followers, skills, profile, isOwner, stat
             <div className={classes.profile}>
                 <h2>{profile.fullName}</h2>
                 <ProfileStatusWithHooks status={status} isOwner={isOwner} />
-                
+
                 <span className={classes.description}>
                     <img src={geo} className={classes.icon} alt='' />
                     {city}
@@ -62,53 +65,28 @@ export const MyPage = ({ userId, city, followers, skills, profile, isOwner, stat
             </div>
 
             {isOwner ?
-                    <div className={classes.editBlock}>
-                        <button type='button' onClick={() => changeModalMode(!hiddenMode)}><img src={dots} alt='' /></button>
-                        <div className={hiddenMode ? classes.openModal : classes.hiddenModal} onBlur={() => changeModalMode(!hiddenMode)}>
-                            
-                            <span className={classes.modalLink} >
-                                <label className={classes.label}>
-                                    Загрузить фото профиля
-                                    <input type={'file'} className={classes.invisible} onChange={(e) => savePhoto(e.target.files[0])} />
-                                </label>
-                            </span>
-
-                            <NavLink className={classes.modalLink} to='/editprofile' > 
-                                Редактировать профиль
-                            </NavLink>
-                        </div>
-                    </div>
+                <MyModal savePhoto={savePhoto} />
                 :
-                <div className={classes.followWrapper}>
-                    {followed ?
-                        <button disabled={followingInProgress} className={classes.followButton} onClick={() => unFollow()} >
-                            <span className={classes.followText}>Отписаться </span>
-                        </button>
-                        :
-                        <button disabled={followingInProgress} className={classes.followButton} onClick={() => follow()}>
-                            <span className={classes.followText}>Подписаться</span>
-                        </button>}
-                    <button className={classes.writeMsgBtn} onClick={() => startDialog(userId, profile.fullName)}>
-                        написать сообщение
-                    </button>
-                </div>
+                <FollowBlock userId={userId}
+                    followingInProgress={followingInProgress}
+                    followed={followed}
+                    unFollow={unFollow}
+                    follow={follow} />
             }
 
         </section>
 
         <Skills skills={skills} isOwner={isOwner} />
-        
+
         <div>
             <h2>Контакты</h2>
             <div>{profile.contacts.facebook}</div>
             <div>{profile.contacts.website}</div>
             <div>{profile.contacts.github}</div>
             <div></div>
-            
+
         </div>
         {/* <div><MyPostsContainer /> </div> */}
     </div>
 }
-
-
 
